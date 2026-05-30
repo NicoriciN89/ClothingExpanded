@@ -64,12 +64,20 @@ namespace Toolbelts
             }
         }
 
+        private static string? s_DetectedLang;
+
         internal static string Get(string key)
         {
-            var lang = NormalizeLanguage(Localization.Language);
+            if (s_DetectedLang == null)
+            {
+                var raw = Localization.Language;
+                s_DetectedLang = NormalizeLanguage(raw);
+                MelonLogger.Msg($"[ClothingExpanded] Language: raw='{raw}' → '{s_DetectedLang}'");
+            }
+
             var data = Data;
-            if (data.TryGetValue(lang,      out var dict) && dict.TryGetValue(key, out var val))   return val;
-            if (data.TryGetValue("English", out var en)   && en.TryGetValue(key,   out var enVal)) return enVal;
+            if (data.TryGetValue(s_DetectedLang, out var dict) && dict.TryGetValue(key, out var val))   return val;
+            if (data.TryGetValue("English",       out var en)   && en.TryGetValue(key,   out var enVal)) return enVal;
             return key;
         }
 
