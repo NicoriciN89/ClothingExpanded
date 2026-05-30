@@ -43,6 +43,23 @@ namespace Toolbelts
         internal static GearItem? bagItem;
         internal static string bagName = string.Empty;
 
+        internal static void RefreshButtonTexts()
+        {
+            attachBeltText     = Localization.Get("GAMEPLAY_TB_AttachBeltLabel");
+            detachBeltText     = Localization.Get("GAMEPLAY_TB_DetachBeltLabel");
+            attachCramponsText = Localization.Get("GAMEPLAY_TB_AttachCramponsLabel");
+            detachCramponsText = Localization.Get("GAMEPLAY_TB_DetachCramponsLabel");
+            attachScabbardText = Localization.Get("GAMEPLAY_TB_AttachScabbardLabel");
+            detachScabbardText = Localization.Get("GAMEPLAY_TB_DetachScabbardLabel");
+
+            if (attachBeltButton != null)     Utils.GetComponentInChildren<UILabel>(attachBeltButton).text     = attachBeltText;
+            if (detachBeltButton != null)     Utils.GetComponentInChildren<UILabel>(detachBeltButton).text     = detachBeltText;
+            if (attachCramponsButton != null) Utils.GetComponentInChildren<UILabel>(attachCramponsButton).text = attachCramponsText;
+            if (detachCramponsButton != null) Utils.GetComponentInChildren<UILabel>(detachCramponsButton).text = detachCramponsText;
+            if (attachScabbardButton != null) Utils.GetComponentInChildren<UILabel>(attachScabbardButton).text = attachScabbardText;
+            if (detachScabbardButton != null) Utils.GetComponentInChildren<UILabel>(detachScabbardButton).text = detachScabbardText;
+        }
+
         internal static void InitializeMTB(ItemDescriptionPage itemDescriptionPage)
         {
             attachBeltText = Localization.Get("GAMEPLAY_TB_AttachBeltLabel");

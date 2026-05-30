@@ -32,7 +32,7 @@ namespace ModNamespace
                 isLoaded = true;
 
                 DoStuffWithGear();
-
+                TBFunctionalities.RefreshButtonTexts();
             }
 
         }
